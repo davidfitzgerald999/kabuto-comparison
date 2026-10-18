@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KABUTO — Iron and carved wood comparison</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#0d1114;color:#eee8dc;font-family:system-ui,sans-serif}
+.comparison{--split:50%;position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;touch-action:pan-y;user-select:none}
+.comparison img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;pointer-events:none}
+.iron{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
+.divider{position:absolute;top:0;bottom:0;left:var(--split);width:1px;background:#dfc596;transform:translateX(-50%);pointer-events:none}
+.handle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:44px;height:44px;border:1px solid #dfc596;border-radius:50%;background:#101417e8;font-size:23px;box-shadow:0 4px 24px #0008}
+.badge{position:absolute;top:18px;border:1px solid #ffffff26;border-radius:4px;padding:8px 11px;font-size:13px;letter-spacing:.04em;background:#101417e8;pointer-events:none}.left{left:18px}.right{right:18px}
+.range{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:ew-resize}
+.comparison:focus-within{outline:3px solid #dfc596;outline-offset:-3px}
+.controls{position:absolute;bottom:16px;left:12px;right:12px;display:flex;align-items:center;justify-content:center;gap:8px;pointer-events:none}
+button{pointer-events:auto;border:1px solid #ffffff35;border-radius:4px;background:#101417e8;color:#eee8dc;font:inherit;font-size:12px;min-height:36px;padding:6px 11px;cursor:pointer}
+button:hover,button:focus-visible{border-color:#dfc596;color:#dfc596}button:focus-visible{outline:2px solid #dfc596;outline-offset:2px}
+.hint{position:absolute;bottom:60px;left:0;right:0;text-align:center;font-size:11px;color:#e2d9ca;pointer-events:none;text-shadow:0 1px 5px #000}
+noscript{position:absolute;bottom:10px;left:10px;right:10px;background:#101417;padding:12px;text-align:center}
+@media(max-width:500px){.badge{top:10px;font-size:10px;padding:6px 8px}.left{left:10px}.right{right:10px}.controls{bottom:8px}.hint{display:none}.handle{width:36px;height:36px;font-size:20px}button{font-size:10px;min-height:32px;padding:5px 8px}}
+</style>
+</head>
+<body>
+<main class="comparison" aria-label="Compare two finishes on the same KABUTO mask">
+  <img src="images/wood.png" width="1800" height="1800" alt="KABUTO mask with the aged carved wood finish" draggable="false">
+  <img class="iron" src="images/iron.png" width="1800" height="1800" alt="The same KABUTO mask with the lacquered iron finish" draggable="false">
+  <div class="divider" aria-hidden="true"><span class="handle">↔</span></div>
+  <span class="badge left">LACQUERED IRON</span><span class="badge right">AGED CARVED WOOD</span>
+  <input class="range" type="range" min="0" max="100" value="50" aria-label="Amount of lacquered iron revealed" aria-valuetext="50 percent iron revealed" aria-describedby="help">
+  <span class="hint" id="help">Drag to compare · use arrow keys when focused</span>
+  <div class="controls" aria-label="Comparison views">
+    <button type="button" data-value="100">Iron</button>
+    <button type="button" data-value="50">Compare</button>
+    <button type="button" data-value="0">Wood</button>
+  </div>
+  <noscript>Enable JavaScript to drag the comparison. Both finishes are shown above.</noscript>
+</main>
+<script>
+const comparison = document.querySelector('.comparison');
+const range = document.querySelector('.range');
+function update(value) {
+  const position = Math.max(0, Math.min(100, Number(value)));
+  range.value = position;
+  comparison.style.setProperty('--split', position + '%');
+  range.setAttribute('aria-valuetext', position + ' percent iron revealed');
+}
+range.addEventListener('input', () => update(range.value));
+document.querySelectorAll('[data-value]').forEach(button => {
+  button.addEventListener('click', () => update(button.dataset.value));
+});
+// Use the whole image as a drag surface, with a native range for keyboard access.
+let activePointer = null;
+const fromPointer = event => {
+  const rect = comparison.getBoundingClientRect();
+  update(Math.round((event.clientX - rect.left) / rect.width * 100));
+};
+range.addEventListener('pointerdown', event => {
+  if (event.button !== 0) return;
+  activePointer = event.pointerId;
+  range.focus({preventScroll:true});
+  range.setPointerCapture(event.pointerId);
+  fromPointer(event);
+  event.preventDefault();
+});
+range.addEventListener('pointermove', event => {
+  if (event.pointerId === activePointer) fromPointer(event);
+});
+range.addEventListener('pointerup', event => {
+  if (event.pointerId === activePointer) { fromPointer(event); activePointer = null; }
+});
+range.addEventListener('pointercancel', () => { activePointer = null; });
+range.addEventListener('lostpointercapture', () => { activePointer = null; });
+update(range.value);
+</script>
+</body>
+</html>
