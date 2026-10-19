@@ -3,71 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark">
-<title>KABUTO · Explore the combinations</title>
+<title>KABUTO — Iron and carved wood comparison</title>
 <style>
-@font-face{font-family:Kabuto;src:url('assets/KABUTO_Serif.woff2') format('woff2');font-display:swap}
-:root{--paper:#eee7d8;--muted:#aeb9b9;--ink:#12191c;--red:#8d362a;--gold:#c8ab78}
-*{box-sizing:border-box}html,body{margin:0;width:100%;background:var(--ink);color:var(--paper);font:14px/1.5 Arial,Helvetica,sans-serif}button{font:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}button{touch-action:manipulation}button:disabled{cursor:wait}
-.showcase{width:100%;max-width:1920px;margin:auto;overflow:hidden}.stage{position:relative;width:100%;aspect-ratio:16/9;background:#10171a;overflow:hidden}.render{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:0;transition:opacity .18s ease}.render.active{opacity:1}.headline{position:absolute;left:4%;top:22%;max-width:27%;pointer-events:none}.eyebrow{font-size:clamp(8px,1.1vw,12px);font-weight:700;letter-spacing:.19em;color:var(--gold);margin:0 0 15px}.headline h1{font-family:Kabuto,Georgia,serif;font-weight:500;font-size:clamp(24px,4.3vw,64px);line-height:1.18;letter-spacing:-.04em;margin:0;text-shadow:0 2px 30px #101619}.headline p:last-child{color:#bbc0bc;font-size:clamp(10px,1.3vw,16px);line-height:1.65;margin:20px 0 0;max-width:210px}.stage-note{position:absolute;left:4%;bottom:5%;font-size:clamp(8px,.95vw,12px);color:#aeb7b9;letter-spacing:.1em}.stage-note span{color:var(--paper)}
-.controls{height:140px;padding:22px 4% 16px;border-top:1px solid #354346;background:linear-gradient(110deg,#192326,#12191c);display:flex;flex-direction:column;justify-content:space-between;gap:10px}.main-row{display:flex;align-items:center;justify-content:space-between;gap:18px}.meta{min-width:0}.meta strong{font-family:Kabuto,Georgia,serif;font-size:20px;font-weight:500}.counter{display:block;color:var(--muted);font-size:11px;letter-spacing:.1em;margin-top:4px;font-variant-numeric:tabular-nums}.actions{display:flex;align-items:center;gap:9px}.random{position:relative;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #b75e4e;background:var(--red);color:var(--paper);min-height:48px;padding:12px 20px;font-size:14px;font-weight:600;border-radius:3px;cursor:pointer;white-space:nowrap;box-shadow:0 3px 15px #080d0f66;transition:background .15s,transform .15s}.random:hover{background:#a34738}.random:active,.random.is-clicking{transform:translateY(1px);background:#69261e}.random svg{width:19px;height:19px}.minor{display:flex;align-items:center;justify-content:center;gap:7px;background:transparent;border:1px solid #465459;color:#d3d9d5;border-radius:3px;height:48px;min-width:43px;padding:10px;cursor:pointer}.minor:hover{background:#263236}.minor svg{width:15px;height:15px}.minor:disabled{opacity:.35;cursor:default}.bottom-row{display:flex;align-items:center;gap:15px;justify-content:space-between;color:#aeb7b7;font-size:10px;line-height:1.5}.bottom-row p{margin:0}.progress{display:flex;gap:3px;align-items:center;flex-shrink:0}.progress i{display:block;width:7px;height:3px;background:#4f5d60}.progress i.active{background:#c8ab78}.message{color:#dfbf83;max-width:100%}.demo-cursor{position:absolute;right:6px;top:25px;width:24px;height:30px;opacity:0;pointer-events:none;filter:drop-shadow(0 1px 2px #0008)}.auto-click .demo-cursor{animation:cursor-tap .75s ease both}.auto-click:after{content:'';position:absolute;right:15px;top:24px;width:10px;height:10px;border:2px solid #eee7d8;border-radius:50%;opacity:0;animation:click-ring .75s ease both}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-@keyframes cursor-tap{0%{opacity:0;transform:translate(28px,18px)}35%,70%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes click-ring{0%,40%{opacity:0;transform:scale(.5)}50%{opacity:.8}100%{opacity:0;transform:scale(4)}}
-@media(max-width:620px){.controls{padding:16px 4% 13px}.meta strong{font-size:16px}.random{padding:12px 14px;font-size:13px}.minor{padding:10px 8px}.actions{gap:6px}.headline p:last-child{display:none}.headline h1{font-size:clamp(18px,4.2vw,26px)}.eyebrow{margin-bottom:10px}.bottom-row{font-size:9px;gap:10px}.progress{gap:2px}.progress i{width:5px}}
-@media(max-width:480px){.controls{padding:13px 4% 12px}.main-row{gap:10px;flex-wrap:wrap}.meta{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:8px}.meta strong{font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#bfc7c5}.counter{display:inline;margin:0;font-size:10px}.actions{width:100%}.random{flex:1;min-height:42px;height:42px}.minor{height:42px}.bottom-row{font-size:9px;line-height:1.4}.progress{display:none}.headline{top:18%;max-width:26%}.headline h1{font-size:17px}.eyebrow{font-size:6px;letter-spacing:.12em}.stage-note{font-size:6px}.demo-cursor{width:20px}}
-@media(prefers-reduced-motion:reduce){.render,.random{transition:none}.auto-click .demo-cursor,.auto-click:after{display:none}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#0d1114;color:#eee8dc;font-family:system-ui,sans-serif}
+.comparison{--split:50%;position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;touch-action:pan-y;user-select:none}
+.comparison img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;pointer-events:none}
+.iron{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
+.divider{position:absolute;top:0;bottom:0;left:var(--split);width:1px;background:#dfc596;transform:translateX(-50%);pointer-events:none}
+.handle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:44px;height:44px;border:1px solid #dfc596;border-radius:50%;background:#101417e8;font-size:23px;box-shadow:0 4px 24px #0008}
+.badge{position:absolute;top:18px;border:1px solid #ffffff26;border-radius:4px;padding:8px 11px;font-size:13px;letter-spacing:.04em;background:#101417e8;pointer-events:none}.left{left:18px}.right{right:18px}
+.range{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:ew-resize}
+.comparison:focus-within{outline:3px solid #dfc596;outline-offset:-3px}
+.controls{position:absolute;bottom:16px;left:12px;right:12px;display:flex;align-items:center;justify-content:center;gap:8px;pointer-events:none}
+button{pointer-events:auto;border:1px solid #ffffff35;border-radius:4px;background:#101417e8;color:#eee8dc;font:inherit;font-size:12px;min-height:36px;padding:6px 11px;cursor:pointer}
+button:hover,button:focus-visible{border-color:#dfc596;color:#dfc596}button:focus-visible{outline:2px solid #dfc596;outline-offset:2px}
+.hint{position:absolute;bottom:60px;left:0;right:0;text-align:center;font-size:11px;color:#e2d9ca;pointer-events:none;text-shadow:0 1px 5px #000}
+noscript{position:absolute;bottom:10px;left:10px;right:10px;background:#101417;padding:12px;text-align:center}
+@media(max-width:500px){.badge{top:10px;font-size:10px;padding:6px 8px}.left{left:10px}.right{right:10px}.controls{bottom:8px}.hint{display:none}.handle{width:36px;height:36px;font-size:20px}button{font-size:10px;min-height:32px;padding:5px 8px}}
 </style>
 </head>
 <body>
-<main class="showcase" aria-label="KABUTO rendered combination gallery">
-  <div class="stage">
-    <img class="render active" id="render-a" src="assets/02O.webp" width="1920" height="1080" fetchpriority="high" alt="Vermilion riveted helmet with a red half mask and black tying cord">
-    <img class="render" id="render-b" width="1920" height="1080" alt="" aria-hidden="true">
-    <div class="headline"><p class="eyebrow">KABUTO / COMBINATIONS</p><h1>One click.<br>New character.</h1><p>Explore the possibilities.<br>Make the next one yours.</p></div>
-    <div class="stage-note"><span>42 MODULES</span> &nbsp; / &nbsp; YOUR COMBINATION</div>
+<main class="comparison" aria-label="Compare two finishes on the same KABUTO mask">
+  <img src="wood.png" width="1800" height="1800" alt="KABUTO mask with the aged carved wood finish" draggable="false">
+  <img class="iron" src="iron.png" width="1800" height="1800" alt="The same KABUTO mask with the lacquered iron finish" draggable="false">
+  <div class="divider" aria-hidden="true"><span class="handle">↔</span></div>
+  <span class="badge left">LACQUERED IRON</span><span class="badge right">AGED CARVED WOOD</span>
+  <input class="range" type="range" min="0" max="100" value="50" aria-label="Amount of lacquered iron revealed" aria-valuetext="50 percent iron revealed" aria-describedby="help">
+  <span class="hint" id="help">Drag to compare · use arrow keys when focused</span>
+  <div class="controls" aria-label="Comparison views">
+    <button type="button" data-value="100">Iron</button>
+    <button type="button" data-value="50">Compare</button>
+    <button type="button" data-value="0">Wood</button>
   </div>
-  <div class="controls">
-    <div class="main-row">
-      <div class="meta"><strong id="look-name">Vermilion &amp; iron</strong><span class="counter" id="counter">EXAMPLE 15 / 15</span></div>
-      <div class="actions">
-        <button type="button" class="minor" id="previous" aria-label="Previous viewed example" title="Previous viewed example" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" class="random" id="randomise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4l4 4-4 4M3 18h3c2 0 4-3 5-5m2-2c1-2 3-5 5-5h3m-4-4l4 4-4 4"/></svg><span>Randomise assembly</span><svg class="demo-cursor" viewBox="0 0 30 36" aria-hidden="true"><path d="M2 1v27l7-6 6 12 6-3-6-11h10z" fill="#f5efe3" stroke="#132022" stroke-width="2"/></svg></button>
-        <button type="button" class="minor" id="autoplay" aria-label="Play automatic preview" title="Play automatic preview" aria-pressed="false"><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">Play</span></button>
-      </div>
-    </div>
-    <div class="bottom-row"><p id="caption">15 pre-rendered examples · Reference head not included.</p><span class="progress" id="progress" aria-hidden="true"></span></div>
-    <p class="sr" id="announcement" role="status" aria-live="polite"></p>
-  </div>
+  <noscript>Enable JavaScript to drag the comparison. Both finishes are shown above.</noscript>
 </main>
-<noscript><p style="padding:12px 4%;color:#eee7d8">Enable JavaScript to explore the other rendered combinations.</p></noscript>
 <script>
-'use strict';
-const examples = [{"id": "02A", "name": "Charcoal & teal", "alt": "Charcoal chin mask and tall helmet with gold crest and teal cord", "src": "assets/02A.webp"}, {"id": "02B", "name": "Vermilion & shadow", "alt": "Red tall helmet and red half mask with moustache and goatee", "src": "assets/02B.webp"}, {"id": "02C", "name": "Indigo · open face", "alt": "Indigo tall helmet with roundel crest and no face mask", "src": "assets/02C.webp"}, {"id": "02D", "name": "Silver crescent", "alt": "Dark helmet with silver crescent crest and an open face", "src": "assets/02D.webp"}, {"id": "02E", "name": "Carved wood & olive", "alt": "Olive ridged helmet, carved wood half mask and textured lacing", "src": "assets/02E.webp"}, {"id": "02F", "name": "Iron & crimson cord", "alt": "Dark lacquered half mask with moustache, red cord and textured lacing", "src": "assets/02F.webp"}, {"id": "02G", "name": "Olive · mask only", "alt": "Olive half mask and laced throat guard, without a helmet", "src": "assets/02G.webp"}, {"id": "02H", "name": "Plum & gold", "alt": "Plum helmet and chin mask with a gold chrysanthemum crest", "src": "assets/02H.webp"}, {"id": "02I", "name": "Warm earth & ivory", "alt": "Warm brown helmet and mask with pale lacing, moustache and goatee", "src": "assets/02I.webp"}, {"id": "02J", "name": "Black lacquer & teal", "alt": "Black lacquered half mask and tall helmet, with teal cord and lacing", "src": "assets/02J.webp"}, {"id": "02K", "name": "Indigo & silver", "alt": "Indigo ridged helmet with a silver chrysanthemum crest and a blue half mask", "src": "assets/02K.webp"}, {"id": "02L", "name": "Black & antique gold", "alt": "Black helmet with a gold crescent, dark mask, goatee and ivory cord", "src": "assets/02L.webp"}, {"id": "02M", "name": "Forest green & gold", "alt": "Green tall helmet and half mask with gold emblem crest and neutral lacing", "src": "assets/02M.webp"}, {"id": "02N", "name": "Ivory & indigo", "alt": "Ivory ridged helmet and chin mask, gold crescent and indigo tying cord", "src": "assets/02N.webp"}, {"id": "02O", "name": "Vermilion & iron", "alt": "Vermilion riveted helmet with a red half mask and black tying cord", "src": "assets/02O.webp"}];
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-const randomButton=document.getElementById('randomise'), previousButton=document.getElementById('previous'),playButton=document.getElementById('autoplay');
-const caption=document.getElementById('caption'), normalCaption=caption.textContent;
-const layers=[document.getElementById('render-a'),document.getElementById('render-b')];
-let current=examples.findIndex(x=>x.id==='02O'),front=0,busy=false,playing=false,visible=true,timer=null,history=[],bag=[],cache=new Map();
-const progress=document.getElementById('progress');
-examples.forEach(()=>progress.appendChild(document.createElement('i')));
-function secureInt(n){const a=new Uint32Array(1);const limit=4294967296-(4294967296%n);do{crypto.getRandomValues(a)}while(a[0]>=limit);return a[0]%n}
-function shuffle(values){for(let i=values.length-1;i>0;i--){const j=secureInt(i+1);[values[i],values[j]]=[values[j],values[i]]}return values}
-function resetBag(){bag=shuffle(examples.map((_,i)=>i).filter(i=>i!==current))}
-function updateLabels(announce=false){const e=examples[current];document.getElementById('look-name').textContent=e.name;document.getElementById('counter').textContent='EXAMPLE '+String(current+1).padStart(2,'0')+' / '+examples.length;[...progress.children].forEach((x,i)=>x.classList.toggle('active',i===current));previousButton.disabled=busy||history.length===0;if(announce)document.getElementById('announcement').textContent=e.name+'. Example '+(current+1)+' of '+examples.length+'.'}
-function load(index){if(cache.has(index))return cache.get(index);const p=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>{cache.delete(index);reject(new Error('image unavailable'))};im.src=examples[index].src});cache.set(index,p);return p}
-function schedule(){clearTimeout(timer);if(playing&&visible&&!document.hidden&&!busy)timer=setTimeout(()=>choose(true),3200)}
-function setPlaying(value){playing=value;playButton.setAttribute('aria-pressed',String(value));playButton.setAttribute('aria-label',value?'Pause automatic preview':'Play automatic preview');playButton.title=value?'Pause automatic preview':'Play automatic preview';document.getElementById('play-icon').textContent=value?'Ⅱ':'▶';document.getElementById('play-label').textContent=value?'Pause':'Play';schedule()}
-async function show(index,remember=true,announce=true){if(busy||index===current)return false;busy=true;randomButton.disabled=true;previousButton.disabled=true;try{await load(index);if(remember)history.push(current);const next=1-front;layers[next].src=examples[index].src;layers[next].alt=examples[index].alt;layers[next].removeAttribute('aria-hidden');layers[front].setAttribute('aria-hidden','true');layers[next].classList.add('active');layers[front].classList.remove('active');front=next;current=index;caption.textContent=normalCaption;return true}catch(error){caption.textContent='Could not load this image. Please try Randomise again.';setPlaying(false);return false}finally{busy=false;randomButton.disabled=false;updateLabels(announce);schedule()}}
-async function choose(auto=false){if(busy)return;if(!auto)setPlaying(false);clearTimeout(timer);if(auto&&!reduceMotion.matches){randomButton.classList.remove('auto-click');void randomButton.offsetWidth;randomButton.classList.add('auto-click');await new Promise(resolve=>setTimeout(resolve,330));if(!playing){randomButton.classList.remove('auto-click');return}}if(!bag.length)resetBag();const next=bag.pop();const ok=await show(next,true,!auto);if(!ok)bag.push(next);randomButton.classList.remove('auto-click')}
-randomButton.addEventListener('click',()=>choose(false));
-previousButton.addEventListener('click',async()=>{if(busy||!history.length)return;setPlaying(false);const next=history[history.length-1];if(await show(next,false,true)){history.pop();resetBag();updateLabels()}});
-playButton.addEventListener('click',()=>setPlaying(!playing));
-document.addEventListener('visibilitychange',schedule);
-new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule()},{threshold:.15}).observe(document.querySelector('.showcase'));
-reduceMotion.addEventListener('change',()=>{if(reduceMotion.matches)setPlaying(false)});
-updateLabels();resetBag();
-if(new URLSearchParams(location.search).get('autoplay')==='1'&&!reduceMotion.matches)setPlaying(true);
-// Warm one image at a time; the first hero remains visible while the rest load.
-(async()=>{for(let i=0;i<examples.length;i++){try{await load(i)}catch(e){}}})();
+const comparison = document.querySelector('.comparison');
+const range = document.querySelector('.range');
+function update(value) {
+  const position = Math.max(0, Math.min(100, Number(value)));
+  range.value = position;
+  comparison.style.setProperty('--split', position + '%');
+  range.setAttribute('aria-valuetext', position + ' percent iron revealed');
+}
+range.addEventListener('input', () => update(range.value));
+document.querySelectorAll('[data-value]').forEach(button => {
+  button.addEventListener('click', () => update(button.dataset.value));
+});
+// Use the whole image as a drag surface, with a native range for keyboard access.
+let activePointer = null;
+const fromPointer = event => {
+  const rect = comparison.getBoundingClientRect();
+  update(Math.round((event.clientX - rect.left) / rect.width * 100));
+};
+range.addEventListener('pointerdown', event => {
+  if (event.button !== 0) return;
+  activePointer = event.pointerId;
+  range.focus({preventScroll:true});
+  range.setPointerCapture(event.pointerId);
+  fromPointer(event);
+  event.preventDefault();
+});
+range.addEventListener('pointermove', event => {
+  if (event.pointerId === activePointer) fromPointer(event);
+});
+range.addEventListener('pointerup', event => {
+  if (event.pointerId === activePointer) { fromPointer(event); activePointer = null; }
+});
+range.addEventListener('pointercancel', () => { activePointer = null; });
+range.addEventListener('lostpointercapture', () => { activePointer = null; });
+update(range.value);
 </script>
 </body>
 </html>
